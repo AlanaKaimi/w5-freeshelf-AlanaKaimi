@@ -19,11 +19,11 @@ class Book(models.Model):
 
     isbn = models.CharField('ISBN', max_length=13, help_text='13 Character <a href="https://www.isbn-international.org/content/what-isbn">ISBN number</a>')
 
-    category = models.ManyToManyFiels('Category', help_text='Select a category for this book')
+    category = models.ManyToManyField('Category', help_text='Select a category for this book')
     # Book URLs should be unique
-    URL = 
+    # URL = 
 
-    slug =
+    # slug =
 
     date_added = models.DateField(null=True, blank=True)
 
