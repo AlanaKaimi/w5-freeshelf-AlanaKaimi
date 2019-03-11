@@ -40,8 +40,8 @@ class Book(models.Model):
         return reverse('book', kwargs={'slug': self.slug, 'id':self.id})
 
     def display_category(self):
-        """Create a string for the Genre. This is required to display genre in Admin."""
-        return ', '.join(genre.name for genre in self.genre.all()[:3])
+        """Create a string for the category. This is required to display category in Admin."""
+        return ', '.join(category.name for category in self.category.all()[:3])
 
     display_category.short_description = 'Category'
 
