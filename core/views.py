@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from core.models import Book, Author, Category
+from django.views import generic
+from core.models import Book, Category
 
 # Create your views here.
 
@@ -17,6 +18,11 @@ def index(request):
     # Render the HTML template index.html with the data in the context variable
     return render(request, 'index.html', context=context)
 
+class BookListView(generic.ListView):
+    model = Book
+
+
+### !! Still working on code below !!
 # https://wellfire.co/learn/fast-and-beautiful-urls-with-django/
 def get_redirected(queryset_or_class, lookups, validators):
     """Calls get_object_or_404 and conditionally builds redirect URL"""
