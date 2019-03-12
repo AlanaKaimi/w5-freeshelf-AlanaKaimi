@@ -5,11 +5,9 @@ from core.models import Book, Category
 # Create your views here.
 
 def index(request):
-    """View finction for home page of site"""
+    """View function for home page of site"""
     # Generate counts of some of the main objects
-    num_books = Book.objects.all().count()
-    # The 'all()' is implied by default.    
-    #! num_authors = Author.objects.count()
+    num_books = Book.objects.all().count()   
     
     context = {
         'num_books': num_books,

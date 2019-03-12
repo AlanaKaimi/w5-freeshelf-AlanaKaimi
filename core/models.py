@@ -14,7 +14,7 @@ class Book(models.Model):
     
     title = models.CharField(max_length=200)
 
-    #! author = models.ForeignKey('Author', on_delete=models.SET_NULL, null=True)
+    author = models.CharField(max_length=200, null=True, blank=True)
 
     description = models.TextField(max_length=1000, help_text='Enter a brief description of the book')
     # ISBN for a later time:
@@ -55,24 +55,5 @@ class Category(models.Model):
     def __str__(self):
         """String for representing the Model object"""
         return self.name
-
-
-### ! Pretty sure I don't actually need the Author Class...
-
-# class Author(models.Model):
-#     """Model representing an author."""
-#     first_name = models.CharField(max_length=100)
-#     last_name = models.CharField(max_length=100)
-
-#     class Meta:
-#         ordering = ['last_name', 'first_name']
-
-#     def get_absolute_url(self):
-#         """Returns the url to access a particular author instance."""
-#         return reverse('author-detail', arg=[str(self.id)])
-
-#     def __str__(self):
-#         """String for representing the Model object."""
-#         return f'{self.last_name}, {self.first_name}'
 
 # class Comments()

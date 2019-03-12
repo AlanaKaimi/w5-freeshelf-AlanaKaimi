@@ -11,15 +11,6 @@ class BooksInline(admin.TabularInline):
     model = Book
     extra = 0
 
-
-### ! Not sure I need Author
-# # Define the admin class
-# @admin.register(Author)
-# class AuthorAdmin(admin.ModelAdmin):
-#     list_display = ('last_name', 'first_name')
-#     fields = ['first_name', 'last_name']
-#     inlines = [BooksInline]
-
 # Register the Admin classes for Book using the decorator
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
