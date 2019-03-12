@@ -23,5 +23,5 @@ class BooksInline(admin.TabularInline):
 # Register the Admin classes for Book using the decorator
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'display_category')
+    list_display = ('title', 'display_category')
     # inlines = [BooksInstanceInline] <-- Not sure if I need this here
