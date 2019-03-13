@@ -18,12 +18,14 @@ from django.urls import path, include
 from django.views.generic import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
+from core import views as core_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('registration.backends.default.urls')),
     path('core/', include('core.urls')),
     path('', RedirectView.as_view(url='/core/', permanent=True)),
+    path('books/<int:book_pk>/favorite', core_views.book_favorite_view, name="book_favorite"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
