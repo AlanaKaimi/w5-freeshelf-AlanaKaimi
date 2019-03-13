@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>FreeShelf</h1>
+  <p>Welcome to FreeShelf, a website developed by <em>Robots!</em>!</p>
+  <h2>Dynamic content</h2>
+  <p>The library has the following Free Books:</p>
+  <ul>
+    <li><strong>Books:</strong> {{ num_books }}</li>
+  </ul>
+{% endblock %}

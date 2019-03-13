@@ -12,7 +12,15 @@ class Book(models.Model):
 
     description = models.TextField(max_length=1000)
 
-    category = models.ManyToManyField('Category', null=True, blank=True)
+    category = models.ManyToManyField('Category', blank=True)
+
+### ! Not working the way I want it to ---------------->
+    def display_category(self):
+        """Create a string for the Category. This is required to display category in Admin."""
+        return ', '.join(category.name for category in self.category.all()[:3])
+
+    display_category.short_description = 'Category'
+###! <-------------------------------------------------
 
     url = models.URLField(max_length=250)
 
@@ -22,7 +30,7 @@ class Book(models.Model):
 
     class Meta:
         ordering = ['-date_added']
-
+# From lecture 3-12 on Slugs
     def save(self, *args, **kwargs):
         self.set_slug()
         super().save(*args, **kwargs)
@@ -42,7 +50,7 @@ class Book(models.Model):
             slug = base_slug + "-" + str(n)
         
         self.slug = slug
-    
+
     def __str__(self):
         """String for representing the Model object."""
         return self.title
