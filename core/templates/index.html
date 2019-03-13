@@ -1,11 +1,28 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>FreeShelf</h1>
-  <p>Welcome to FreeShelf, a website developed by <em>Robots!</em>!</p>
-  <h2>Dynamic content</h2>
-  <p>The library has the following Free Books:</p>
-  <ul>
-    <li><strong>Books:</strong> {{ num_books }}</li>
-  </ul>
+    <h1>FreeShelf</h1>
+    <p>Welcome to FreeShelf, a website developed by <em>Robots!</em>!</p>
+    <h2>Dynamic content</h2>
+    <p>The library has the following Free Books:</p>
+    
+    {% if books %}
+        <ul>
+        {% for book in books %}
+            <li><a href="{{ book.url }}">{{ book }}</a> - {{ book.author }}
+                {% if book.category.count %}
+                    <p>Category:
+                    {% for category in book.category.all %}
+                        <a href="{{ category.get_absolute_url }}">{{ category.name }}</a></p>
+                    {% endfor %}
+                {% endif %}
+                <p>{{ book.description }}</p>
+                <p>Date added: {{ book.date_added }}</p></li>
+
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>There are no books on the shelf.</p>
+    {% endif %}
+
 {% endblock %}
