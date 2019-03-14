@@ -18,23 +18,9 @@
                     {% endfor %}
                 {% endif %}
                 <p>{{ book.description }}</p>
-                
-                {% if request.user.is_authenticated %}
-                <form action="{% url 'book_favorite' book_pk=book.pk %}" method="POST">
-                    {% csrf_token %}
-                    <button type="submit">
-                        {% if book in request.user.favorite_books.all %}
-                            Unfavorite
-                        {% else %}
-                            Favorite
-                        {% endif %}
-                        this book
-                    </button>
-                </form>
-                {% endif %}
 
                 <p>
-                    {{ book.favorited_by.count }} {{ book.favorited_by.count|pluralize:"person has,people have" }} favorited this book.
+                        <a href="{{ book.get_absolute_url }}">{{ book.favorited_by.count }} {{ book.favorited_by.count|pluralize:"person has,people have" }} favorited this book.</a>
                 </p>
 
                     

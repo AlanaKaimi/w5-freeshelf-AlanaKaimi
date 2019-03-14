@@ -83,6 +83,10 @@ class Book(models.Model):
             slug = base_slug + "-" + str(n)        
         self.slug = slug
 
+    def get_absolute_url(self):
+        """String for representing the Model object."""
+        return reverse('book-detail', args=[str(self.pk)])
+
     def __str__(self):
         """String for representing the Model object."""
         return self.title

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Title: {{ book.title }}</h1>
+
+<p><strong>Author:</strong>{{ book.author }}</p>
+<p><strong>Description:</strong> {{ book.description }}</p>
+<p><strong>Category:</strong> {% for category in book.category.all %}</p>
+<p>{{ category }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+
+{% if request.user.is_authenticated %}
+    <form action="{% url 'book_favorite' book_pk=book.pk %}" method="POST">
+        {% csrf_token %}
+        <button type="submit">
+            {% if book in request.user.favorite_books.all %}
+                Unfavorite
+            {% else %}
+                Favorite
+            {% endif %}
+            this book
+        </button>
+    </form>
+    {% endif %}
+
+    <p>
+        {{ book.favorited_by.count }} {{ book.favorited_by.count|pluralize:"person has,people have" }} favorited this book.
+    </p>
+
+
+{% endblock %}
