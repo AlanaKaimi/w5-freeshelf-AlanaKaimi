@@ -51,6 +51,8 @@ class Book(models.Model):
 
     favorited_by = models.ManyToManyField(to=User, related_name='favorite_books')
     
+    image = models.ImageField(upload_to='books/', blank=True, null=True)
+
     url = models.URLField(max_length=250)
     slug = models.SlugField(unique=True)
 

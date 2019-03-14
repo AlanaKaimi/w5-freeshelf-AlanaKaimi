@@ -26,7 +26,7 @@ urlpatterns = [
     path('core/', include('core.urls')),
     path('', RedirectView.as_view(url='/core/', permanent=True)),
     path('books/<int:book_pk>/favorite', core_views.book_favorite_view, name="book_favorite"),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     import debug_toolbar

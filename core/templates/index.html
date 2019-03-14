@@ -9,6 +9,7 @@
     {% if books %}
         <ul>
         {% for book in books %}
+        <img src="{{ book.image.url }}" width="240" alt="{{ book.title }}, {{ book.description }}">
             <li><a href="{{ book.url }}">{{ book }}</a> - {{ book.author }}
                 {% if book.category.count %}
                     <p>Category:
