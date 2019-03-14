@@ -49,7 +49,7 @@ class Book(models.Model):
     category = models.ManyToManyField(Category, blank=True)
     date_added = models.DateField(auto_now_add=True)
 
-    favorited_by = models.ManyToManyField(to=User, related_name='favorite_books')
+    favorited_by = models.ManyToManyField(to=User, blank=True, related_name='favorite_books')
     
     image = models.ImageField(upload_to='books/', blank=True, null=True)
 
