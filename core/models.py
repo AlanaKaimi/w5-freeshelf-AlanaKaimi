@@ -46,7 +46,7 @@ class Book(models.Model):
     title = models.CharField(max_length=200)
     author = models.CharField(max_length=200)
     description = models.TextField(max_length=1000)
-    category = models.ManyToManyField(Category, blank=True)
+    categories = models.ManyToManyField(Category, blank=True)
     date_added = models.DateField(auto_now_add=True)
 
     # Worked through by comparing to Chinh's code.

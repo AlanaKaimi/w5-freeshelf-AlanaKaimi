@@ -11,9 +11,9 @@
         {% for book in books %}
         <img src="{{ book.image.url }}" width="140" alt="{{ book.title }}, {{ book.description }}">
             <li><a href="{{ book.url }}">{{ book }}</a> - {{ book.author }}
-                {% if book.category.count %}
+                {% if book.categories.count %}
                     <p>Category:
-                    {% for category in book.category.all %}
+                    {% for category in book.categories.all %}
                         <a href="{{ category.get_absolute_url }}">{{ category.name }}</a></p>
                     {% endfor %}
                 {% endif %}
