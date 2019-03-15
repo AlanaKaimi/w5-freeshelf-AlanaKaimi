@@ -4,6 +4,7 @@ from django.views import generic
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods
 from django.contrib import messages
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 
@@ -29,6 +30,8 @@ class BookDetailView(generic.DetailView):
 def book_favorite_view(request, book_pk):
     book = get_object_or_404(Book, pk=book_pk)
 
+    next = request.POST.get('next', '/')
+
     favorite, created = request.user.favorite_set.get_or_create(book=book)
 
     # # I liked this better but having an issue with it, trying the other option
@@ -43,4 +46,4 @@ def book_favorite_view(request, book_pk):
         messages.info(request, f"You have unfavorited {book.title}.")
         favorite.delete()
 
-    return redirect(book.get_absolute_url())
+    return HttpResponseRedirect(next)

@@ -49,7 +49,8 @@ class Book(models.Model):
     category = models.ManyToManyField(Category, blank=True)
     date_added = models.DateField(auto_now_add=True)
 
-    favorited_by = models.ManyToManyField(to=User, blank=True, related_name='favorite_books')
+    # Worked through by comparing to Chinh's code.
+    favorited_by = models.ManyToManyField(to=User, related_name='favorite_books', through='Favorite')
     
     image = models.ImageField(upload_to='books/', blank=True, null=True)
 
@@ -84,8 +85,8 @@ class Book(models.Model):
         self.slug = slug
 
     def get_absolute_url(self):
-        """String for representing the Model object."""
-        return reverse('book-detail', args=[str(self.pk)])
+        """Returns the url to access the home page."""
+        return reverse('index')
 
     def __str__(self):
         """String for representing the Model object."""
@@ -93,7 +94,4 @@ class Book(models.Model):
 
 class Favorite(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    book = models.ForeignKey(Book, on_delete=models.CASCADE)  
-
-
-
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
