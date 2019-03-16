@@ -18,6 +18,7 @@
                         <li><a href="{% url 'index' %}">Home</a></li>
                         {% if request.user.is_authenticated %}
                         <li>{{ user.username }}</li>
+                        <li><a href="{% url 'book_favorite' %}">My Favorites</a></li>
                         <li><a href="{% url 'auth_logout' %}">Logout</a></li>
                         {% else %}
                         <li><a href="{% url 'auth_login' %}">Register / Login</a></li>

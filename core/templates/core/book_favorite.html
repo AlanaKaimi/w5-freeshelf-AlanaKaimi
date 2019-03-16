@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>My Favorite Free Books</h1>
+{% if user.favorite_set.count %}
+    <ul>
+    {% for favorite in user.favorite_set.all %}
+        <li> 
+        <img src="{{ favorite.book.image.url }}" width="140" alt="{{ favorite.book.title }}, {{ favorite.book.description }}">
+        <h2>Title: {{ favorite.book.title }}</h2>
+
+        <p><strong>Author:</strong> {{ favorite.book.author }}</p>
+        <p><strong>Description:</strong> {{ favorite.book.description|truncatewords:100 }}</p>
+        <!-- Not working -->
+        <p><strong>Category:</strong> 
+            {% for category in book.category.all %}</p>
+                <p>{{ category }}
+                {% if not forloop.last %}, {% endif %}
+            {% endfor %}</p>
+        <!-- ^^^ Not working ^^^ -->
+        </li>
+       
+    </ul>
+    {% endfor %}
+{% else %}
+<p>You have no Favorites</p>
+{% endif %}
+
+{% endblock %}

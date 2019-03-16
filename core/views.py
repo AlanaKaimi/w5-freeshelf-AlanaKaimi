@@ -47,3 +47,13 @@ def book_favorite_view(request, book_pk):
         favorite.delete()
 
     return HttpResponseRedirect(next)
+
+def my_favorites_view(request):
+    favorites = Favorite.objects.all()
+    book_list = Book.objects.all()
+
+    context = {
+        'favorites': favorites,
+        'book_list': book_list,
+    }
+    return render(request, 'core/book_favorite.html', context=context)
