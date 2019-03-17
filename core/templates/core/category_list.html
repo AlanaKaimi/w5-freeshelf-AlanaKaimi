@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    {% if category_list %}
+        {% for category in category_list %}
+            <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+            {% if not forloop.last %} | {% endif %}
+        {% endfor %}
+    {% endif %}
+
+
+    {% if category.book_set.count %}
+    <ul class="list">
+        {% for book in category.book_set.count %}
+            <li>
+                <a class="f3" href="{{ book.url }}">{{ book.title }}</a> by {{ book.author }}
+                <p>{{ book.description }}</p>
+                {% if book.favorited %}
+                    <p> {{ book.favorited }} | {{ book.date_added }} | {{ book.category.get }}
+                {% else %}
+                    <p> {{ book.date_added }} | {{ book.category.get }}
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>There are no books on the site.</p> 
+    {% endif %}
+{% endblock %}

@@ -1,49 +1,61 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-    <h1>FreeShelf</h1>
+    
     <p>Welcome to FreeShelf, a website developed by <em>Robots!</em>!</p>
     <h2>Dynamic content</h2>
     <p>The library has the following Free Books:</p>
     
     {% if books %}
-        <ul>
+      
         {% for book in books %}
-        <img src="{{ book.image.url }}" width="140" alt="{{ book.title }}, {{ book.description }}">
-            <li><a href="{{ book.url }}">{{ book }}</a> - {{ book.author }}
-                {% if book.categories.count %}
-                    <p>Category:
-                    {% for category in book.categories.all %}
-                        <a href="{{ category.get_absolute_url }}">{{ category.name }}</a></p>
-                    {% endfor %}
-                {% endif %}
-                <p>{{ book.description }}</p>
-                
-                <p>
-                {% if request.user.is_authenticated %}
-                    <form action="{% url 'book_favorite' book_pk=book.pk %}" method="POST">
-                    {% csrf_token %}
-                        <button type="submit">
-                        {% if book in request.user.favorite_books.all %}
-                            Unfavorite
-                        {% else %}
-                            Favorite
+        <div class="card">
+            <div class="clearfix">
+            
+            
+            
+       
+                <img src="{{ book.image.url }}" width="200" alt="{{ book.title }}, {{ book.description }}">
+               
+                <h5 class="book-title"><a href="{{ book.url }}">{{ book }}</a></h5> 
+                <span class="book-author">- {{ book.author }}</span>
+                        {% if book.categories.count %}
+                            <p>Category:
+                            {% for category in book.categories.all %}
+                                <a href="{{ category.get_absolute_url }}">{{ category.name }}</a></p>
+                            {% endfor %}
                         {% endif %}
-                        this book
-                        </button>
-                    </form>
-                {% endif %}
-                </p>
-                <p>
-                        <a href="{{ book.get_absolute_url }}">{{ book.favorited_by.count }} {{ book.favorited_by.count|pluralize:"person has,people have" }} favorited this book.</a>
-                </p>
+                        <p class="book-description">{{ book.description }}</p>
+                        
+                        <p>
+                        {% if request.user.is_authenticated %}
+                            <form action="{% url 'book_favorite' book_pk=book.pk %}" method="POST">
+                            {% csrf_token %}
+                                <button type="submit">
+                                {% if book in request.user.favorite_books.all %}
+                                    Unfavorite
+                                {% else %}
+                                    Favorite
+                                {% endif %}
+                                this book
+                                </button>
+                            </form>
+                        {% endif %}
+                        </p>
+                        <p>
+                                <a href="{{ book.get_absolute_url }}">{{ book.favorited_by.count }} {{ book.favorited_by.count|pluralize:"person has,people have" }} favorited this book.</a>
+                        </p>
 
-                    
+                            
 
-                <p>Date added: {{ book.date_added }}</p></li>
-
-        {% endfor %}
-        </ul>
+                        <p>Date added: {{ book.date_added }}</p>
+            </div>
+        </div>
+                {% endfor %}
+             
+            
+        
     {% else %}
         <p>There are no books on the shelf.</p>
     {% endif %}

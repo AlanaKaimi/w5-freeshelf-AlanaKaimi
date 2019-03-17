@@ -25,6 +25,22 @@ def index(request):
 class BookDetailView(generic.DetailView):
     model = Book
 
+
+
+# class CategoryListView(generic.ListView):
+#     model = Category
+
+# class CategoryDetailView(generic.DetailView):
+#     model = Category
+
+#     def get_context_data(self, **kwargs):
+#         # Call the base implementation first to get the context
+#         context = super(CategoryDetailView, self).get_context_data(**kwargs)
+#         # Create any data and add it to the context
+#         context['category_list'] = Category.objects.all()
+#         return context
+
+
 @require_http_methods(['POST'])
 @login_required
 def book_favorite_view(request, book_pk):

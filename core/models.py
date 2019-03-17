@@ -31,11 +31,11 @@ class Category(models.Model):
             slug = base_slug + "-" + str(n)    
         self.slug = slug
 
-    def get_absolute_url(self):
+    def __str__(self):
         """String for representing the Model object."""
         return self.name
 
-    def __str__(self):
+    def get_absolute_url(self):
         """String for representing the Model object."""
         return self.name
 
