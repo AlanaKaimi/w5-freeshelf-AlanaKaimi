@@ -3,8 +3,9 @@
 
 {% block content %}
     
-    <p>Welcome to FreeShelf, a website developed by <em>Robots!</em>!</p>
-    <h2>Dynamic content</h2>
+    <h2>Welcome to FreeShelf,<br>
+         a website developed by <em>Robots!</em></h2>
+    
     <p>The library has the following Free Books:</p>
     
     {% if books %}
@@ -49,7 +50,7 @@
 
                             
 
-                        <p>Date added: {{ book.date_added }}</p>
+                        <p class="float-right">Date added: {{ book.date_added }}</p>
             </div>
         </div>
                 {% endfor %}

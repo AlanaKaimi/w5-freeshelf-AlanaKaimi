@@ -1,15 +1,19 @@
 header {
     position: relative;
-    height: 100px;
-    background-image: linear-gradient(#ff9d2f, #ff6126);
+    height: 155px;
+    background-image: linear-gradient(#f78502, #f1af97);
 }
 
 h1 {
-    size: 8rem;
-    padding: 20px 0 20px 20px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 5em;
+    padding: 10px 0 0px 20px;
     color: #4e26ff;
 }
 
+.category-filter {
+    padding-left: 10px;
+}
 .sidebar-nav {
     margin-top: 20px;
     padding: 0;
@@ -26,6 +30,11 @@ h1 {
 .card img {
     float: left;
     margin: 5px 10px 10px 5px;
+    box-shadow: -5px 5px rgb(221, 219, 219);
+}
+
+.card img:hover {
+    transform: rotate(-5deg);
 }
 
 .book-title {
@@ -41,3 +50,24 @@ h1 {
 
 }
 
+button {
+    background-color: #785bfa;
+    color: #ffffff;
+    box-shadow: -2px 2px rgb(221, 219, 219);
+    border-radius: 10px;
+    float: right;
+}
+
+button:hover {
+    background-color: #3003f8;
+}
+
+button:active {
+    background-color: #3003f8;
+    box-shadow: -2px 2px rgb(121, 120, 120);
+    transform: translateY(4px);
+}
+
+button:focus {
+    outline:0;
+}
